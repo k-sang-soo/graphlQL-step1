@@ -1,8 +1,23 @@
-import gql from "graphql-tag";
-import { ApolloServer} from "@apollo/server";
+import gql from 'graphql-tag';
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
 
-const server = new ApolloServer({});
+//apollo 서버에 data type을 꼭 명시해줘야함
+const typeDefs = `#graphql
+  type Query {
+    hello: String
+  }
+`;
 
-server.listen().theh(({ url}) => {
-    console.log(`Running on ${url}`)
-})
+const resolvers = {
+    Query: {
+        hello: () => 'world',
+    },
+};
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+});
+
+const { url } = await startStandaloneServer(server);
+console.log(`🚀 Server ready at ${url}`);
