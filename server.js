@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
+import fetch from 'node-fetch';
 
 //apollo 서버에 data type을 꼭 명시해줘야함
 // GET은 Query 안에 나머지 POST,PUT,DELETE 같은 것들은 Mutation 에 적어줘야함
